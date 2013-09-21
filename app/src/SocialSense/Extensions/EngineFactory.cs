@@ -1,4 +1,5 @@
 ﻿using SocialSense.Authorization;
+using SocialSense.Shared;
 
 namespace SocialSense.Extensions
 {
@@ -29,7 +30,12 @@ namespace SocialSense.Extensions
 
         public static Engine GoogleSites()
         {
-            return new Engine(new GoogleEngineConfiguration());
+            return new Engine(new GoogleEngineConfiguration(GoogleSource.Sites));
+        }
+
+        public static Engine GoogleBlogs()
+        {
+            return new Engine(new GoogleEngineConfiguration(GoogleSource.Blogs));
         }
 
         public static Engine GooglePlus(GooglePlusAuthorization authorization)

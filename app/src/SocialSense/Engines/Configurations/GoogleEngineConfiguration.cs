@@ -9,6 +9,13 @@
 
     public class GoogleEngineConfiguration : IEngineConfiguration
     {
+        private GoogleSource source;
+
+        public GoogleEngineConfiguration(GoogleSource source)
+        {
+            this.source = source;
+        }
+        
         public IParser Parser
         {
             get
@@ -21,7 +28,7 @@
         {
             get
             {
-                return new GoogleUrlBuilder(GoogleSource.Blogs);
+                return new GoogleUrlBuilder(this.source);
             }
         }
 

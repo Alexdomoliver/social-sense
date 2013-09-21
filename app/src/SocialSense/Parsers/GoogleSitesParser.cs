@@ -69,7 +69,7 @@
 
         protected override string ExtractSnippet(HtmlNode node)
         {
-            var htmlNode = node.SelectSingleNode("div[2]");
+            var htmlNode = node.SelectSingleNode("div[3]");
             return (htmlNode != null) ? htmlNode.InnerText : string.Empty;
         }
 
@@ -77,7 +77,7 @@
         {
             try
             {
-                return DateParser.Parse(node.SelectSingleNode("div[1]").InnerText);
+                return DateParser.Parse(node.SelectSingleNode("div[2]").InnerText);
             }
             catch
             {
