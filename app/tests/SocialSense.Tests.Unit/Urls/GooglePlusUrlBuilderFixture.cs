@@ -39,7 +39,7 @@
             var query = new Query { Term = "cultura", Period = period };
             
             // Act:
-            var url = this.builder.WithQuery(query);
+            this.builder.WithQuery(query);
 
             // Assert:
             

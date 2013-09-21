@@ -20,22 +20,25 @@
         public int TimeOut { get; set; }
         internal HttpWebRequest HttpWebRequest { get; set; }
 
-        public virtual string DownloadContent(string url)
+        public virtual string DownloadContent (string url)
         {
-            this.HttpWebRequest = (HttpWebRequest)WebRequest.Create(url);
+            try {
+                this.HttpWebRequest = (HttpWebRequest)WebRequest.Create (url);
 
-            foreach (var behavior in this.behaviors)
-            {
-                behavior.Execute();
+                foreach (var behavior in this.behaviors) {
+                    behavior.Execute ();
+                }
+                this.HttpWebRequest.Timeout = (int)TimeSpan.FromSeconds (this.TimeOut).TotalMilliseconds;
+
+                var webResponse = (HttpWebResponse)this.HttpWebRequest.GetResponse ();
+
+                StreamReader reader = string.IsNullOrEmpty (webResponse.CharacterSet) ?
+                                      new StreamReader (webResponse.GetResponseStream ()) :
+                                      new StreamReader (webResponse.GetResponseStream (), Encoding.GetEncoding (webResponse.CharacterSet));
+                return reader.ReadToEnd ();
+            } catch (Exception e) {
+                return string.Empty;
             }
-            this.HttpWebRequest.Timeout = (int)TimeSpan.FromSeconds(this.TimeOut).TotalMilliseconds;
-
-            var webResponse = (HttpWebResponse)this.HttpWebRequest.GetResponse();
-
-            StreamReader reader = string.IsNullOrEmpty(webResponse.CharacterSet) ?
-                                  new StreamReader(webResponse.GetResponseStream()) :
-                                  new StreamReader(webResponse.GetResponseStream(), Encoding.GetEncoding(webResponse.CharacterSet));
-            return reader.ReadToEnd();
         }
 
         public void AddBehavior(params Behavior[] behaviors)

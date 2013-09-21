@@ -18,7 +18,10 @@ namespace SocialSense.Tests.Integration.Engines
         [SetUp]
         public void SetUp()
         {
-            this.engine = EngineFactory.Facebook(new FacebookAuthorization { Token = "Access_Token" });
+            this.engine = EngineFactory.Facebook(new FacebookAuthorization { 
+                AppId = "391952084261264", 
+                AppSecret = "09ae30f7d48ce5010d2b4a77c2e52e87" 
+            });
         }
 
         [TestCase("cultura")]
