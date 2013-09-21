@@ -18,7 +18,10 @@ namespace SocialSense.Tests.Integration.Engines
         [SetUp]
         public void SetUp()
         {
-            this.engine = EngineFactory.Twitter(new TwitterAuthorization());
+            this.engine = EngineFactory.Twitter(new TwitterAuthorization
+            {
+                        
+            });
         }
 
         [TestCase("cultura")]
