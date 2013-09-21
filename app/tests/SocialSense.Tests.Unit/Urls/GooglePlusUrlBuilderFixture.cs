@@ -42,7 +42,7 @@
             this.builder.WithQuery(query);
 
             // Assert:
-            
+            Assert.AreEqual(url, "");
         }
 
         [TestCase(Language.Portuguese, Result = "https://www.googleapis.com/plus/v1/activities?fields=items(actor%2FdisplayName%2Cobject(attachments(content%2CobjectType)%2Ccontent%2CobjectType)%2Cpublished)%2CnextLink%2Ctitle%2Cupdated&pp=1&orderBy=recent&maxResults=20&query=cultura&language=pt-PT")]

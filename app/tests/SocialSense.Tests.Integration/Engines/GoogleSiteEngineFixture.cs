@@ -19,11 +19,12 @@
             this.engine = EngineFactory.GoogleSites();
         }
 
-        [TestCase("cultura")]
+        [TestCase("social-sense")]
         [TestCase("google sites")]
-        public void Search_GetResultFromQuery(string term)
+        public void Search_GetResultFromQuery (string term)
         {
-            var results = this.engine.Search(new Query { Term = term, MaxResults = 10 });
+            var results = this.engine.Search (new Query { Term = term, MaxResults = 10 });
+
             results.Count.Should().Be.GreaterThan(0);
         }
 
